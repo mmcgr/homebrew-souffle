@@ -12,9 +12,10 @@ class Souffle < Formula
   depends_on "pkg-config" => :build
 
   def install
-    system "export "
-    system "./configure", "PKG_CONFIG_PATH=/usr/local/opt/libffi/lib/pkgconfig/",
-           "--disable-silent-rules", "--prefix=#{prefix}"
+    system "export", "PKG_CONFIG_PATH=/usr/local/opt/libffi/lib/pkgconfig/"
+    system "./bootstrap"
+    system "./configure", "--disable-silent-rules",
+                          "--prefix=#{prefix}"
     system "make", "install"
   end
 
