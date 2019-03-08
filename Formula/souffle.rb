@@ -16,14 +16,6 @@ class Souffle < Formula
   depends_on "pkg-config" => :build
 
   def install
-    system "env", "PKG_CONFIG_PATH=/usr/local/opt/libffi/lib/pkgconfig/"
-    system "env", "SOUFFLE_VERSION=1.5.1"
-    system "git", "init"
-    system "git", "add", "bootstrap"
-    system "git", "commit", "-mbegin"
-    system "git", "tag", "1.5.1"
-    
-    system "./bootstrap"
     system "./configure", "--disable-silent-rules",
                           "--prefix=#{prefix}"
     system "make", "install"
