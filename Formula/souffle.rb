@@ -2,14 +2,14 @@ class Souffle < Formula
   desc "Translator of declarative Datalog programs into the C++ language."
   homepage "https://github.com/souffle-lang/souffle/wiki"
   stable do
-    url "https://github.com/souffle-lang/souffle/archive/1.5.1.tar.gz"
-    sha256 "d620b7f5f67604a0bbfeb7a1f6721c18e5b5b23698758aab2a1a8520aecc6f0b"
+    url "https://github.com/souffle-lang/souffle/archive/1.5.1.tar.gz" #stable
+    sha256 "d620b7f5f67604a0bbfeb7a1f6721c18e5b5b23698758aab2a1a8520aecc6f0b" #stable
   end
   devel do
-    url "https://dl.bintray.com/souffle-lang/osx/souffle-1.5.1-288-g6d5e4e13.tar.gz"
-    sha256 "425ae6613112ef1e0b8d99f5cc450d4bfc2c7eae8062c78eb60cd92a25a5ab06"
+    url "https://dl.bintray.com/souffle-lang/osx/souffle-1.5.1-288-g6d5e4e13.tar.gz" #devel
+    sha256 "425ae6613112ef1e0b8d99f5cc450d4bfc2c7eae8062c78eb60cd92a25a5ab06" #devel
   end
-  head "https://github.com/souffle-lang/souffle.git"
+  head "https://github.com/souffle-lang/souffle.git", :shallow => false
 
   depends_on "libtool" => :build
   depends_on "bison" => :build
@@ -20,7 +20,8 @@ class Souffle < Formula
   depends_on "pkg-config" => :build
 
   def install
-    head do
+    if build.head?
+      system "git", "fetch", "--tags"
       system "./bootstrap"
     end
 
