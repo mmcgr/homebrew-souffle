@@ -6,8 +6,8 @@ class Souffle < Formula
     sha256 "d620b7f5f67604a0bbfeb7a1f6721c18e5b5b23698758aab2a1a8520aecc6f0b"
   end
   devel do
-    url ""
-    sha256 ""
+    url "https://dl.bintray.com/souffle-lang/osx/souffle-1.5.1-288-g6d5e4e13.tar.gz"
+    sha256 "425ae6613112ef1e0b8d99f5cc450d4bfc2c7eae8062c78eb60cd92a25a5ab06"
   end
   head "https://github.com/souffle-lang/souffle.git"
 
@@ -20,7 +20,7 @@ class Souffle < Formula
   depends_on "pkg-config" => :build
 
   def install
-    if build.head
+    head do
       system "./bootstrap"
     end
 
